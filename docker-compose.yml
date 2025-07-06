@@ -1,0 +1,13 @@
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual
+    build: .
+    container_name: api2
+    ports:
+      # Mapeia a porta 8000 do host para a porta 8000 do contêiner
+      - "8000:8000"
+    volumes:
+      # Monta o diretório atual no diretório /app do contêiner para refletir as mudanças no código em tempo real
+      - .:/app
+    # Comando para iniciar o servidor com recarregamento automático (ideal para desenvolvimento)
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
